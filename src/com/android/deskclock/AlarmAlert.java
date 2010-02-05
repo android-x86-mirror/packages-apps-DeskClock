@@ -67,7 +67,7 @@ public class AlarmAlert extends Activity {
     @Override
     protected void onCreate(Bundle icicle) {
         super.onCreate(icicle);
-
+        AlarmClock.setVolumeControlForPlatform(this);
         mAlarm = getIntent().getParcelableExtra(Alarms.ALARM_INTENT_EXTRA);
 
         // Get the volume/camera button behavior setting

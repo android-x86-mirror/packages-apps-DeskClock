@@ -785,6 +785,7 @@ public class DeskClock extends Activity {
     @Override
     protected void onCreate(Bundle icicle) {
         super.onCreate(icicle);
+        AlarmClock.setVolumeControlForPlatform(this);
 
         mRNG = new Random();
 

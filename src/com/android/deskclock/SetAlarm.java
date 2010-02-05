@@ -67,6 +67,7 @@ public class SetAlarm extends PreferenceActivity
     @Override
     protected void onCreate(Bundle icicle) {
         super.onCreate(icicle);
+        AlarmClock.setVolumeControlForPlatform(this);
 
         addPreferencesFromResource(R.xml.alarm_prefs);
 
@@ -85,6 +86,7 @@ public class SetAlarm extends PreferenceActivity
         mTimePref = findPreference("time");
         mAlarmPref = (AlarmPreference) findPreference("alarm");
         mVibratePref = (CheckBoxPreference) findPreference("vibrate");
+        mVibratePref.setEnabled(!AlarmClock.isVolumeAdjustable());
         mRepeatPref = (RepeatPreference) findPreference("setRepeat");
 
         Intent i = getIntent();
@@ -101,7 +103,7 @@ public class SetAlarm extends PreferenceActivity
         mHour = alarm.hour;
         mMinutes = alarm.minutes;
         mRepeatPref.setDaysOfWeek(alarm.daysOfWeek);
-        mVibratePref.setChecked(alarm.vibrate);
+        mVibratePref.setChecked(alarm.vibrate && !AlarmClock.isVolumeAdjustable());
         // Give the alert uri to the preference.
         mAlarmPref.setAlert(alarm.alert);
         updateTime();
